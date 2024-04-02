@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.eshop"
-    compileSdk flutter.compileSdkVersion
+    compileSdk 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -45,10 +45,12 @@ android {
         applicationId "com.example.eshop"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 23
+        targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled     true
+
     }
 
     buildTypes {
@@ -58,10 +60,23 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    configurations.all {
+            resolutionStrategy {
+                eachDependency {
+                     if ((requested.group == "org.jetbrains.kotlin")
+                        &&(requested.name.startsWith("kotlin-stdlib"))) {
+                         useVersion("1.8.0")
+                        }
+                 }
+            }
+    }
 }
 
 flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+            implementation 'com.android.support:multidex:1.0.3'
+
+}

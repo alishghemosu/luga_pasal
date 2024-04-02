@@ -1,7 +1,9 @@
+import 'package:eshop/views/cart%20screen/cart_scren.dart';
 import 'package:eshop/views/home%20screen/widgets/all_product_list.dart';
 import 'package:eshop/views/home%20screen/widgets/category_list_widget.dart';
 import 'package:eshop/views/home%20screen/widgets/promotions_widget.dart';
 import 'package:eshop/views/profile/profile_screen.dart';
+import 'package:eshop/widget/add_product_form.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,7 +23,14 @@ class HomePage extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(Icons.shopping_cart),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CartScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -64,41 +73,52 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(left: 15),
-            height: 250,
-            color: const Color.fromARGB(255, 50, 76, 97),
-            child: const PromotionState(),
-          ),
-          const SizedBox(height: 20),
-          const Padding(
-            padding: EdgeInsets.only(left: 15),
-            child: Text(
-              'Categories',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(left: 15),
+              height: 250,
+              color: const Color.fromARGB(255, 50, 76, 97),
+              child: const PromotionState(),
+            ),
+            const SizedBox(height: 20),
+            const Padding(
+              padding: EdgeInsets.only(left: 15),
+              child: Text(
+                'Categories',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-          const CategoryListWidget(),
-          const SizedBox(height: 20),
-          const Padding(
-            padding: EdgeInsets.only(left: 15, bottom: 10),
-            child: Text(
-              'All Products',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            const SizedBox(height: 10),
+            const CategoryListWidget(),
+            const SizedBox(height: 20),
+            const Padding(
+              padding: EdgeInsets.only(left: 15, bottom: 10),
+              child: Text(
+                'All Products',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          const AllProductList(),
-        ],
+            const AllProductList(),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddProductScreen()),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

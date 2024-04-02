@@ -1,9 +1,9 @@
 import 'package:eshop/service%20or%20provider/cart_provider.dart';
 import 'package:eshop/views/cart%20screen/cart_scren.dart';
-import 'package:eshop/views/home%20screen/home_page.dart';
 import 'package:eshop/service%20or%20provider/liked_state_provider.dart';
 import 'package:eshop/service%20or%20provider/log_in_provider.dart';
 import 'package:eshop/service%20or%20provider/product_list_provider.dart';
+import 'package:eshop/views/landing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -41,7 +41,7 @@ class ClothingShoppingApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: const HomePage(),
+        home: const LandingPage(),
       ),
     );
   }

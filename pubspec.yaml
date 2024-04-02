@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   provider: ^6.1.2
   image_picker: ^1.0.7
+  esewa_flutter_sdk:
+    path: ./esewa_flutter_sdk 
 
 dev_dependencies:
   flutter_test:
@@ -63,10 +65,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-    - assets/images/jeans/
-    - assets/images/womens/
-    - assets/images/pets/
-    - assets/images/kids/
 
 
   #   - images/a_dot_ham.jpeg

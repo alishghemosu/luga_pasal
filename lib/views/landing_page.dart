@@ -8,12 +8,12 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 13, 78, 143),
+        backgroundColor: Color.fromARGB(255, 111, 171, 230),
         title: const Text(
-          'Welcome to Clothing Store',
+          'Welcome to Luga Pasal',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.blue,
+            color: Colors.white,
           ),
         ),
       ),

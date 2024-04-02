@@ -1,8 +1,11 @@
 import 'dart:io';
 
+import 'package:eshop/core/esewa/esewa_payment.dart';
 import 'package:eshop/service%20or%20provider/cart_provider.dart';
 import 'package:eshop/service%20or%20provider/liked_state_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatelessWidget {
@@ -86,11 +89,37 @@ class CartScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton(
-          onPressed: () {
-            Provider.of<Cart>(context, listen: false).clearCart();
-          },
-          child: const Text('Clear Cart'),
+        child: Row(
+          children: [
+            Expanded(
+              child: MaterialButton(
+                color: Colors.red,
+                onPressed: () {
+                  Provider.of<Cart>(context, listen: false).clearCart();
+                },
+                child: const Row(
+                  children: [
+                    Text('Clear Cart'),
+                    Icon(Icons.clear),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: MaterialButton(
+                color: Colors.blue,
+                onPressed: () {
+                  makeEsewaPayment();
+                },
+                child: const Row(
+                  children: [
+                    Text('Check Out'),
+                    Icon(Icons.shopping_cart_checkout_sharp)
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

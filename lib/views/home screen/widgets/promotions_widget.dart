@@ -10,9 +10,9 @@ class PromotionState extends StatefulWidget {
 class _PromotionStateState extends State<PromotionState> {
   List<Map<String, String>> images = [
     {'name': 'Clothes', 'path': 'assets/images/clothes.jpeg'},
-    {'name': 'Dresses', 'path': 'assets/images/womens/dress.jpeg'},
-    {'name': 'Jeans', 'path': 'assets/images/jeans/j1.jpeg'},
-    {'name': 'Pets', 'path': 'assets/images/pets/p1.jpeg'},
+    {'name': 'Dresses', 'path': 'assets/images/dress.jpeg'},
+    {'name': 'Jeans', 'path': 'assets/images/j1.jpeg'},
+    {'name': 'Pets', 'path': 'assets/images/p1.jpeg'},
     {'name': 'Kids', 'path': 'assets/images/KidsFront.jpg'},
   ];
 
