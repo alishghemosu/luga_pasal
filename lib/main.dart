@@ -1,4 +1,5 @@
 import 'package:eshop/service%20or%20provider/cart_provider.dart';
+import 'package:eshop/views/cart%20screen/cart_scren.dart';
 import 'package:eshop/views/home%20screen/home_page.dart';
 import 'package:eshop/service%20or%20provider/liked_state_provider.dart';
 import 'package:eshop/service%20or%20provider/log_in_provider.dart';
@@ -27,12 +28,15 @@ class ClothingShoppingApp extends StatelessWidget {
           create: (context) => AddProductListProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => CartProvider(),
+          create: (context) => Cart(),
         ),
       ],
       child: MaterialApp(
+        routes: {
+          '/cart': (context) => const CartScreen(),
+        },
         debugShowCheckedModeBanner: false,
-        title: 'Clothing Shopping',
+        title: 'Cloth Shopping',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,

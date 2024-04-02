@@ -1,9 +1,9 @@
 import 'dart:io';
-import 'package:eshop/views/product%20details/widget/like_and_button.dart';
-import 'package:eshop/views/product%20details/widget/select_color.dart';
-import 'package:eshop/views/product%20details/widget/select_size.dart';
+import 'package:eshop/service%20or%20provider/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:eshop/models/product_models.dart';
+import 'package:eshop/service%20or%20provider/liked_state_provider.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final Product product;
@@ -16,6 +16,18 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  List<Color> colors = [
+    Colors.black,
+    Colors.white,
+    Colors.grey,
+    Colors.blue,
+    Colors.red,
+    Colors.pink,
+  ];
+  List<String> sizes = ["S", "M", "L", "XL"];
+  String selectedSize = "S";
+  Color? selectedColor;
+
   @override
   Widget build(BuildContext context) {
     File? imageFile;
@@ -58,17 +70,112 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 Text(widget.product.name),
                 const SizedBox(height: 10),
                 const Text("Select Color:"),
-                const SelectColor(),
+                Wrap(
+                  spacing: 8.0,
+                  children: colors
+                      .map(
+                        (color) => GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedColor = color;
+                            });
+                          },
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: color,
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: selectedColor == color
+                                    ? Colors.green
+                                    : Colors.transparent,
+                                width: 5,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
                 const SizedBox(height: 10),
                 const Text("Select Size:"),
-                const SelectSize(),
+                Wrap(
+                  spacing: 8.0,
+                  children: sizes.map((size) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedSize = size;
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: selectedSize == size
+                              ? Colors.black
+                              : Colors.white,
+                          border: Border.all(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Text(
+                          size,
+                          style: TextStyle(
+                            color: selectedSize == size
+                                ? Colors.white
+                                : Colors.black,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                )
               ],
             ),
           ),
           Expanded(
             child: Container(),
           ),
-          const LikeButton(),
+          Container(
+            padding: const EdgeInsets.all(10),
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Consumer<LikeState>(
+                  builder: (context, likeState, _) => IconButton(
+                    icon: Icon(
+                      likeState.isLiked
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: likeState.isLiked ? Colors.red : null,
+                    ),
+                    onPressed: () {
+                      likeState.updateLike();
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: MaterialButton(
+                    color: Colors.black,
+                    onPressed: () {
+                      Provider.of<Cart>(context, listen: false)
+                          .addToCart(widget.product);
+                      Navigator.of(context).pushNamed('/cart');
+                    },
+                    child: const Text(
+                      "Add to Cart",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );

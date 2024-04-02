@@ -1,4 +1,4 @@
-import 'package:eshop/views/home%20screen/widgets/add_product_list.dart';
+import 'package:eshop/views/home%20screen/widgets/all_product_list.dart';
 import 'package:eshop/views/home%20screen/widgets/category_list_widget.dart';
 import 'package:eshop/views/home%20screen/widgets/promotions_widget.dart';
 import 'package:eshop/views/profile/profile_screen.dart';
@@ -97,7 +97,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          const AddProductList(),
+          const AllProductList(),
         ],
       ),
     );
